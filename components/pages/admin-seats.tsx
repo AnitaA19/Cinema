@@ -178,7 +178,7 @@ export function AdminSeats({ hallId }: { hallId: number }) {
                               aria-label={`Row ${row}, seat ${number}${seat.isVip ? ", VIP" : ""}`}
                               aria-pressed={seat.id === selectedId}
                               className={cn(
-                                "grid size-8 shrink-0 place-items-center rounded-md text-[11px] transition sm:size-9",
+                                "grid size-8 shrink-0 cursor-pointer place-items-center rounded-md text-[11px] transition sm:size-9",
                                 seat.isVip ? "bg-primary/20 text-primary ring-1 ring-primary/50 hover:bg-primary/30" : "bg-foreground/10 hover:bg-foreground/20",
                                 seat.id === selectedId && "bg-primary text-primary-foreground ring-2 ring-primary ring-offset-2 ring-offset-card",
                               )}
@@ -195,7 +195,7 @@ export function AdminSeats({ hallId }: { hallId: number }) {
                             onClick={() => addAt({ rowNumber: row, seatNumber: number })}
                             aria-label={`Add row ${row}, seat ${number}`}
                             title={full ? "Hall is full" : `Add row ${row}, seat ${number}`}
-                            className="group grid size-8 shrink-0 place-items-center rounded-md border border-dashed border-foreground/15 text-muted-foreground/0 transition hover:border-primary hover:text-primary disabled:cursor-not-allowed disabled:hover:border-foreground/15 sm:size-9"
+                            className="group grid size-8 shrink-0 cursor-pointer place-items-center rounded-md border border-dashed border-foreground/20 text-muted-foreground/35 transition hover:border-primary hover:bg-primary/10 hover:text-primary disabled:cursor-not-allowed disabled:opacity-40 disabled:hover:border-foreground/20 disabled:hover:bg-transparent disabled:hover:text-muted-foreground/35 sm:size-9"
                           >
                             <Plus className="size-3.5" />
                           </button>
@@ -231,7 +231,7 @@ export function AdminSeats({ hallId }: { hallId: number }) {
                   <p className="text-xs tracking-[0.18em] text-primary uppercase">Edit seat</p>
                   <h2 className="mt-1 font-heading text-2xl">Row {selected.rowNumber}, seat {selected.seatNumber}</h2>
                 </div>
-                <button type="button" aria-label="Close" onClick={() => setSelectedId(null)} className="grid size-8 place-items-center rounded-lg text-muted-foreground hover:bg-muted hover:text-foreground">
+                <button type="button" aria-label="Close" onClick={() => setSelectedId(null)} className="grid size-8 cursor-pointer place-items-center rounded-lg text-muted-foreground transition hover:bg-muted hover:text-foreground">
                   <X className="size-4" />
                 </button>
               </div>
@@ -258,7 +258,7 @@ export function AdminSeats({ hallId }: { hallId: number }) {
                     key={option}
                     type="button"
                     onClick={() => setMode(option)}
-                    className={cn("h-8 rounded-lg transition", mode === option ? "bg-background font-medium shadow-sm" : "text-muted-foreground hover:text-foreground")}
+                    className={cn("h-8 cursor-pointer rounded-lg transition", mode === option ? "bg-background font-medium shadow-sm" : "text-muted-foreground hover:text-foreground")}
                   >
                     {option === "single" ? "One seat" : "Whole row"}
                   </button>

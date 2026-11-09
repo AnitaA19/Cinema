@@ -33,7 +33,7 @@ function NavLinks({ pathname }: { pathname: string | null }) {
           key={link.href}
           href={link.href}
           className={cn(
-            "rounded-full px-3 py-1.5 text-sm text-muted-foreground transition hover:text-foreground",
+            "rounded-full px-3 py-1.5 text-sm text-muted-foreground transition hover:bg-muted/70 hover:text-foreground",
             pathname === link.href && "bg-muted text-foreground",
           )}
         >
@@ -50,7 +50,7 @@ function ActiveNavLinks() {
 
 export function SiteHeader() {
   const router = useRouter()
-  const { session, logout } = useAuth()
+  const { session, ready, logout } = useAuth()
 
   return (
     <header className="sticky top-0 z-40 border-b border-border/70 bg-background/80 backdrop-blur-md">
@@ -62,12 +62,14 @@ export function SiteHeader() {
           <ActiveNavLinks />
         </Suspense>
         <div className="ml-auto flex items-center gap-2">
-          {isAdmin(session?.role) ? (
+          {ready && isAdmin(session?.role) ? (
             <Button render={<Link href="/admin" />} variant="outline" className="hidden h-9 sm:inline-flex">
               Admin desk
             </Button>
           ) : null}
-          {session ? (
+          {!ready ? (
+            <div className="h-9 w-24 animate-pulse rounded-lg bg-muted/70" aria-hidden />
+          ) : session ? (
             <DropdownMenu>
               <DropdownMenuTrigger
                 render={
@@ -117,16 +119,16 @@ export function SiteHeader() {
               </SheetHeader>
               <div className="flex flex-col gap-1 px-4">
                 {links.map((link) => (
-                  <Link key={link.href} href={link.href} className="rounded-lg px-3 py-2 text-sm hover:bg-muted">
+                  <Link key={link.href} href={link.href} className="rounded-lg px-3 py-2 text-sm transition hover:bg-muted">
                     {link.label}
                   </Link>
                 ))}
                 {session ? (
-                  <Link href={homeForRole(session.role)} className="rounded-lg px-3 py-2 text-sm hover:bg-muted">
+                  <Link href={homeForRole(session.role)} className="rounded-lg px-3 py-2 text-sm transition hover:bg-muted">
                     {isAdmin(session.role) ? "Admin desk" : "My tickets"}
                   </Link>
                 ) : (
-                  <Link href="/register" className="rounded-lg px-3 py-2 text-sm hover:bg-muted">
+                  <Link href="/register" className="rounded-lg px-3 py-2 text-sm transition hover:bg-muted">
                     Create an account
                   </Link>
                 )}

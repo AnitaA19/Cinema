@@ -15,7 +15,7 @@ const monthLabel = new Intl.DateTimeFormat("en-GB", { timeZone: "UTC", month: "l
 const dayLabel = new Intl.DateTimeFormat("en-GB", { timeZone: "UTC", weekday: "short", day: "numeric", month: "short", year: "numeric" })
 
 const triggerClass =
-  "flex h-10 w-full items-center gap-2 rounded-lg border border-input bg-transparent px-3 text-left text-sm transition-colors outline-none hover:bg-input/50 focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50 data-popup-open:border-ring dark:bg-input/30"
+  "flex h-10 w-full cursor-pointer items-center gap-2 rounded-lg border border-input bg-transparent px-3 text-left text-sm transition-colors outline-none hover:bg-input/50 focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50 data-popup-open:border-ring dark:bg-input/30"
 
 const pad = (value: number) => String(value).padStart(2, "0")
 const dayKey = (year: number, month: number, day: number) => `${year}-${pad(month + 1)}-${pad(day)}`
@@ -78,7 +78,7 @@ function Calendar({ value, min, onSelect }: { value: string; min?: string; onSel
               className={cn(
                 "grid aspect-square place-items-center rounded-lg text-sm transition",
                 cell.inMonth ? "text-foreground" : "text-muted-foreground/50",
-                !selected && !disabled && "hover:bg-muted",
+                !selected && !disabled && "cursor-pointer hover:bg-muted",
                 cell.key === today && !selected && "ring-1 ring-primary/60 text-primary",
                 selected && "bg-primary font-medium text-primary-foreground",
                 disabled && "cursor-not-allowed opacity-30",
@@ -92,7 +92,7 @@ function Calendar({ value, min, onSelect }: { value: string; min?: string; onSel
       <div className="mt-3 flex justify-between border-t border-border pt-3 text-sm">
         <button
           type="button"
-          className="rounded-md px-2 py-1 text-primary hover:bg-muted"
+          className="cursor-pointer rounded-md px-2 py-1 text-primary hover:bg-muted"
           onClick={() => {
             const now = parseDay(today)
             setView({ year: now.year, month: now.month })
@@ -112,7 +112,7 @@ function IconButton({ label, onClick, children }: { label: string; onClick: () =
       type="button"
       aria-label={label}
       onClick={onClick}
-      className="grid size-8 place-items-center rounded-lg text-muted-foreground transition hover:bg-muted hover:text-foreground"
+      className="grid size-8 cursor-pointer place-items-center rounded-lg text-muted-foreground transition hover:bg-muted hover:text-foreground"
     >
       {children}
     </button>
@@ -160,7 +160,7 @@ export function DatePicker({
           type="button"
           aria-label="Clear date"
           onClick={() => onChange("")}
-          className="absolute top-1/2 right-2 grid size-6 -translate-y-1/2 place-items-center rounded-md text-muted-foreground hover:bg-muted hover:text-foreground"
+          className="absolute top-1/2 right-2 grid size-6 -translate-y-1/2 cursor-pointer place-items-center rounded-md text-muted-foreground hover:bg-muted hover:text-foreground"
         >
           <X className="size-3.5" />
         </button>
@@ -215,7 +215,7 @@ function Chip({ active, onClick, children }: { active: boolean; onClick: () => v
       aria-pressed={active}
       onClick={onClick}
       className={cn(
-        "h-8 rounded-lg text-sm tabular-nums transition",
+        "h-8 cursor-pointer rounded-lg text-sm tabular-nums transition",
         active ? "bg-primary font-medium text-primary-foreground" : "bg-foreground/5 hover:bg-foreground/10",
       )}
     >

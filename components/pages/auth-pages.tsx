@@ -39,7 +39,7 @@ export function LoginPage() {
     <AuthFrame
       title="Sign in"
       lede="Use the username or email on your CinemaGo account."
-      footer={<>New here? <Link className="text-primary" href="/register">Create an account</Link></>}
+      footer={<>New here? <Link className="text-primary transition hover:underline" href="/register">Create an account</Link></>}
     >
       <form className="space-y-4" onSubmit={submit}>
         <Field label="Username or email" value={usernameOrEmail} onChange={setUsernameOrEmail} autoComplete="username" />
@@ -84,7 +84,7 @@ export function RegisterPage() {
     <AuthFrame
       title="Create an account"
       lede="Registration always creates a customer. Admin access is issued by CinemaGo, not this form."
-      footer={<>Already booked with us? <Link className="text-primary" href="/login">Sign in</Link></>}
+      footer={<>Already booked with us? <Link className="text-primary transition hover:underline" href="/login">Sign in</Link></>}
     >
       <form className="space-y-4" onSubmit={submit}>
         <Field label="Username" value={username} onChange={setUsername} autoComplete="username" hint="3–100 letters, digits, . _ -" />
@@ -235,7 +235,7 @@ function Credential({
   onUse: (username: string, password: string) => void
 }) {
   return (
-    <button type="button" className="flex w-full items-center justify-between rounded-xl px-2 py-1 text-left hover:bg-muted" onClick={() => onUse(username, password)}>
+    <button type="button" className="flex w-full cursor-pointer items-center justify-between rounded-xl px-2 py-1.5 text-left transition hover:bg-muted" onClick={() => onUse(username, password)}>
       <span>{label} · {username}</span>
       <span className="text-xs text-primary">Use</span>
     </button>

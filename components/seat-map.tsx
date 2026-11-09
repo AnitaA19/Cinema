@@ -39,11 +39,12 @@ export function SeatMap({
                     aria-label={`Row ${seat.rowNumber}, seat ${seat.seatNumber}${seat.isVip ? ", VIP" : ""}${taken ? ", taken" : ""}`}
                     onClick={() => onToggle?.(seat)}
                     className={cn(
-                      "grid size-7 shrink-0 place-items-center rounded-md text-[10px] transition sm:size-8",
-                      taken && "cursor-not-allowed bg-muted/40 text-muted-foreground/40",
-                      !taken && !isSelected && !seat.isVip && "bg-foreground/10 hover:bg-foreground/20",
-                      !taken && !isSelected && seat.isVip && "bg-primary/20 text-primary ring-1 ring-primary/50 hover:bg-primary/30",
-                      isSelected && "bg-primary text-primary-foreground",
+                      "grid size-7 shrink-0 place-items-center rounded-md text-[10px] font-medium transition duration-150 sm:size-8",
+                      taken && "cursor-not-allowed bg-muted/30 text-muted-foreground/35 line-through decoration-muted-foreground/40",
+                      !taken && onToggle && !disabled && "cursor-pointer hover:scale-105 active:scale-95",
+                      !taken && !isSelected && !seat.isVip && "bg-foreground/12 text-foreground/85 hover:bg-foreground/22",
+                      !taken && !isSelected && seat.isVip && "bg-primary/18 text-primary ring-1 ring-primary/55 hover:bg-primary/28",
+                      isSelected && "bg-primary text-primary-foreground shadow-[0_0_0_2px_oklch(0.83_0.12_84/0.35)] hover:bg-primary",
                     )}
                   >
                     {seat.seatNumber}
@@ -54,10 +55,10 @@ export function SeatMap({
         ))}
       </div>
       <div className="mt-5 flex flex-wrap justify-center gap-4 text-xs text-muted-foreground">
-        <Legend className="bg-foreground/10" label="Open" />
-        <Legend className="bg-primary/30 ring-1 ring-primary/50" label="VIP" />
+        <Legend className="bg-foreground/15" label="Open" />
+        <Legend className="bg-primary/25 ring-1 ring-primary/55" label="VIP" />
         <Legend className="bg-primary" label="Selected" />
-        <Legend className="bg-muted/50" label="Taken" />
+        <Legend className="bg-muted/40 opacity-70" label="Taken" />
       </div>
     </div>
   )

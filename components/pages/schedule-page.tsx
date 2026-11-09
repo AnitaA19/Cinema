@@ -81,7 +81,7 @@ export function SchedulePage() {
             <h2 className="font-heading text-2xl">{day}</h2>
             <div className="mt-3 divide-y divide-border overflow-hidden rounded-2xl border border-border/80">
               {rows.map((session) => (
-                <Link key={session.id} href={`/sessions/${session.id}`} className="grid gap-2 px-4 py-4 hover:bg-muted/40 sm:grid-cols-[1fr_auto_auto] sm:items-center">
+                <Link key={session.id} href={`/sessions/${session.id}`} className="grid gap-2 px-4 py-4 transition hover:bg-muted/50 focus-visible:bg-muted/50 focus-visible:outline-none sm:grid-cols-[1fr_auto_auto] sm:items-center">
                   <div>
                     <p className="font-medium">{session.movieTitle}</p>
                     <p className="text-sm text-muted-foreground">{formatWhen(session.startsAt)} · {session.hallName}</p>

@@ -7,7 +7,7 @@ export function MovieCard({ movie, nextShowing }: { movie: Movie; nextShowing?: 
   return (
     <Link
       href={`/movies/${movie.id}`}
-      className="group overflow-hidden rounded-2xl border border-border/70 bg-card/80 transition hover:-translate-y-0.5 hover:border-primary/40"
+      className="group overflow-hidden rounded-2xl border border-border/70 bg-card/80 transition duration-200 hover:-translate-y-0.5 hover:border-primary/40 hover:bg-card"
     >
       <Poster title={movie.title} src={movie.posterUrl} className="aspect-[2/3]" eyebrow={formatAge(movie.ageRating)} />
       <div className="space-y-2 p-4">

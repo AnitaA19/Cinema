@@ -92,9 +92,17 @@ export function SessionPage({ id }: { id: number }) {
           <ul className="mt-4 space-y-2 text-sm">
             {chosen.length === 0 ? <li className="text-muted-foreground">Select open seats in the house.</li> : null}
             {chosen.map((seat) => (
-              <li key={seat.seatId} className="flex justify-between">
-                <span>Row {seat.rowNumber}, seat {seat.seatNumber}{seat.isVip ? " · VIP" : ""}</span>
-                <span>{formatMoney(seat.isVip ? show.vipPrice : show.standardPrice)}</span>
+              <li key={seat.seatId}>
+                <button
+                  type="button"
+                  onClick={() => toggle(seat)}
+                  disabled={!bookable || book.isPending}
+                  className="flex w-full cursor-pointer items-center justify-between rounded-lg px-2 py-1.5 text-left transition hover:bg-muted/60 disabled:cursor-not-allowed"
+                  aria-label={`Remove row ${seat.rowNumber}, seat ${seat.seatNumber}`}
+                >
+                  <span>Row {seat.rowNumber}, seat {seat.seatNumber}{seat.isVip ? " · VIP" : ""}</span>
+                  <span className="tabular-nums text-muted-foreground">{formatMoney(seat.isVip ? show.vipPrice : show.standardPrice)}</span>
+                </button>
               </li>
             ))}
           </ul>

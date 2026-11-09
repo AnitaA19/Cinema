@@ -46,7 +46,7 @@ function NavList({ pathname, onNavigate }: { pathname: string | null; onNavigate
             href={item.href}
             onClick={onNavigate}
             className={cn(
-              "flex items-center gap-2 rounded-xl px-3 py-2 text-sm text-muted-foreground hover:bg-muted hover:text-foreground",
+              "flex items-center gap-2 rounded-xl px-3 py-2 text-sm text-muted-foreground transition hover:bg-muted hover:text-foreground",
               active && "bg-primary/15 text-foreground",
             )}
           >

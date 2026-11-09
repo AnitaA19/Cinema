@@ -73,7 +73,7 @@ export function HomePage() {
       <section className="mx-auto max-w-6xl px-4 pb-12">
         <div className="mb-5 flex items-end justify-between gap-4">
           <h2 className="font-heading text-3xl">On the programme</h2>
-          <Link href="/movies" className="text-sm text-primary">All films</Link>
+          <Link href="/movies" className="text-sm text-primary transition hover:underline">All films</Link>
         </div>
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {catalogue.slice(0, 4).map((movie) => (
@@ -89,11 +89,11 @@ export function HomePage() {
       <section className="mx-auto max-w-6xl px-4 pb-16">
         <div className="mb-5 flex items-end justify-between">
           <h2 className="font-heading text-3xl">Coming up</h2>
-          <Link href="/schedule" className="text-sm text-primary">Full schedule</Link>
+          <Link href="/schedule" className="text-sm text-primary transition hover:underline">Full schedule</Link>
         </div>
         <div className="divide-y divide-border overflow-hidden rounded-2xl border border-border/80 bg-card/60">
           {upcoming.slice(0, 5).map((session) => (
-            <Link key={session.id} href={`/sessions/${session.id}`} className="grid gap-1 px-4 py-4 transition hover:bg-muted/40 sm:grid-cols-[160px_1fr_auto] sm:items-center">
+            <Link key={session.id} href={`/sessions/${session.id}`} className="grid gap-1 px-4 py-4 transition hover:bg-muted/50 focus-visible:bg-muted/50 focus-visible:outline-none sm:grid-cols-[160px_1fr_auto] sm:items-center">
               <span className="text-sm text-muted-foreground">{formatWhen(session.startsAt)}</span>
               <span>
                 <span className="font-medium">{session.movieTitle}</span>
